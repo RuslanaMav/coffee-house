@@ -407,7 +407,6 @@ button {
 
     .menu-tabs {
         justify-content: center;
-        overflow: hidden;
     }
 
 
@@ -533,9 +532,7 @@ button {
 }
 
 
-
-.burger-popup {
-    display: none;
+.burger-popup { 
     flex-direction: column;
     width: 100%;
     position: absolute;
@@ -545,22 +542,19 @@ button {
     padding: 80px 40px;
     gap: 96px;
     height: 100%;
-    animation: menuAppend 1s;
+    right: -100%;
+    display:flex;
+    transform: scale(0);
+    transition: right 1s, transform 0s;
+    transition-delay: 0s, 1s;
+}
+
+.burger-popup.open{
+    transform: scale(1);
     right: 0;
+    transition: right 1s;
 }
 
-
-
-
-@keyframes menuAppend {
-    0% {
-        right: -100%;
-    }
-
-    100% {
-        right: 0;
-    }
-}
 
 .button-a.burger>.enjoy-button::after {
     background-image: url(img/coffee-cup.svg);
@@ -641,26 +635,28 @@ button {
 
 .modal-popup {
     padding: 16px;
-    position: fixed;
     border-radius: 40px;
     background: var(--background-body, #E1D4C9);
-    display: none;
+    display: flex; 
+    position: fixed;
+    left: 50%;
     top: 50%;
-    transform: translate(0, -50%);
     z-index: 1000;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 1s;
+}
 
-
-    /**/
-
+.modal-popup.open {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: 1s;
 }
 
 .tabs-img.modal {
     width: 310px;
     height: 310px;
 }
-
-
-
 
 
 .modal-info {
@@ -784,9 +780,6 @@ body.open::after {
     position: fixed;
 }
 
-.modal-popup {
-    animation: modalAppend 1s;
-}
 
 @media screen and (min-width:1200px) {
     .modal-info {
@@ -794,15 +787,7 @@ body.open::after {
     }
 
 
-    @keyframes modalAppend {
-        0% {
-            right: -100%;
-        }
-
-        100% {
-            right: 23%;
-        }
-    }
+    
 }
 
 @media screen and (max-width:1199px) {
@@ -814,16 +799,6 @@ body.open::after {
         flex-wrap: wrap;
     }
 
-
-    @keyframes modalAppend {
-        0% {
-            right: -100%;
-        }
-
-        100% {
-            right: 5%;
-        }
-    }
 }
 
 @media screen and (max-width:600px) {

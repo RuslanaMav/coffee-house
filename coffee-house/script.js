@@ -8,7 +8,7 @@ document.querySelectorAll(".nav-item.burger").forEach(item => item.addEventListe
 function openMenu() {
     menuBurgerButton.classList.toggle("open");
     if (menuBurgerButton.classList.contains("open")) {
-        popupMenu.style.display = "flex";
+        popupMenu.classList.add("open");
         document.body.style.overflow = "hidden";
     }
     else closeMenu();
@@ -16,12 +16,9 @@ function openMenu() {
 
 function closeMenu() {
     menuBurgerButton.classList.remove("open");  
-    popupMenu.animate([
-        { right: "0" },
-        { right: "-100%" }],
-        { duration: 500, });
-    setTimeout(() => popupMenu.style.display = "none", 500);
+    popupMenu.classList.remove("open");
     document.body.style.overflow = "visible";
+
 }
 
 window.addEventListener("resize", () => {

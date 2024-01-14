@@ -1,4 +1,9 @@
-import products from "./products.js";
+
+
+let url = 'https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/coffee-house/products.json'
+let response = await fetch(url);
+let products = await response.json();
+//console.log(p[0]);
 
 // BURGER MENU
 
@@ -13,7 +18,7 @@ document.querySelector(".button-a.burger").addEventListener('click', closeMenu);
 function openMenu() {
     menuBurgerButton.classList.toggle("open");
     if (menuBurgerButton.classList.contains("open")) {
-        popupMenu.style.display = "flex";
+        popupMenu.classList.add("open");
         document.body.style.overflow = "hidden";
     }
     else closeMenu();
@@ -21,11 +26,7 @@ function openMenu() {
 
 function closeMenu() {
     menuBurgerButton.classList.remove("open");  
-    popupMenu.animate([
-        { right: "0" },
-        { right: "-100%" }],
-        { duration: 500, });
-    setTimeout(() => popupMenu.style.display = "none", 500);
+    popupMenu.classList.remove("open");
     document.body.style.overflow = "visible";
 }
 
@@ -125,13 +126,10 @@ document.addEventListener('click', (e) => {
     const c = e.composedPath().includes(document.querySelector(".modal-close"));
     const m = e.composedPath().includes(menuBurgerButton);
     if (!b && !s && !m || c) {
+        modalWindow.classList.remove("open");
         document.body.style.overflow = "visible";
         document.body.classList.remove("open");
-        modalWindow.animate([
-            { right: "23%" },
-            { right: "-100%" }],
-            { duration: 500, });
-        setTimeout(() => modalWindow.style.display = "none", 500);
+        
     }
 });
 
@@ -160,14 +158,14 @@ function openModal() {
     }
     currentPrice = Number(products[n + idCard - 1].price);
 
-    addAdditives(n + idCard - 1);
-    modalWindow.style.display = "flex";
+    addAdditives(n + idCard - 1); 
     document.querySelector(".tabs-img.modal").src = `img/${name}-` + idCard + '.png';
     document.querySelector(".tabs-title.modal").innerHTML = products[n + idCard - 1].name;
     document.querySelector(".tabs-info-modal").innerHTML = products[n + idCard - 1].description;
     modalPrice.innerHTML = "$" + products[n + idCard - 1].price;
     document.body.style.overflow = "hidden";
     document.body.classList.add("open");
+    modalWindow.classList.add("open");
 }
 
 
