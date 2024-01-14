@@ -1,9 +1,9 @@
 
 
-let url = 'https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/coffee-house/products.json'
-let response = await fetch(url);
-let products = await response.json();
-//console.log(p[0]);
+const url = 'https://raw.githubusercontent.com/RuslanaMav/coffee-house/main/coffee-house/products.json';
+const response = await fetch(url);
+const products = await response.json();
+
 
 // BURGER MENU
 
